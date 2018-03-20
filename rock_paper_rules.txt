@@ -1,8 +1,0 @@
-RULES = {
-    'rock': {
-        'scissors': 'blunts' }
-    'paper': {
-        'rock': 'covers' }
-    'scissors': {
-        'paper': 'cuts' }
-}
