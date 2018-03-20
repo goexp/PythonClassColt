@@ -31,7 +31,7 @@ while  True:
 
 	user=None
 	while user not in CHOICES:
-		user= input("Select -"+", ".join([choice for choice in CHOICES])+": ")
+		user= input("Select - "+", ".join([choice for choice in CHOICES])+": ")
 
 	computer_won=False
 	user_won=False
