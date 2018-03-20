@@ -44,7 +44,7 @@ while  True:
 		computer_won=True
 		computer_wins+=1
 		print(computer.capitalize()+" "+RULES[computer][user]+" "+user+". Computer won!")		
-	elif computer_won==user_won:
+	else:
 		print(computer+" and "+user+" is a draw.")
 
 	print("Computer wins="+str(computer_wins)+" | User wins="+str(user_wins))
