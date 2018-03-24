@@ -1,4 +1,4 @@
-from random import randint
+from random import choice as rnd_choice
 
 #Rules from https://codereview.stackexchange.com/questions/14441/oop-in-rock-paper-scissors-program
 
@@ -27,7 +27,7 @@ user_wins=0
 
 
 while  True:
-	computer = CHOICES[randint(0,len(CHOICES)-1)]
+	computer = rnd_choice(CHOICES)
 
 	user=None
 	while user not in CHOICES:
