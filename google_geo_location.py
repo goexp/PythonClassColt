@@ -21,4 +21,6 @@ response= requests.get(
 
 data=response.json()
 
-print(data)
+print(data["results"][0].keys())
+print(data["results"][0].get("formatted_address"))
+print(data["results"][0].get("geometry").get("location"))
