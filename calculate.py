@@ -19,6 +19,7 @@ def calculate(**kwargs):
 	
 	return message + " " + str(result)
 
+#Prevent test code from being executed if calculate is imported
 if __name__ == '__main__':
 	print(calculate(make_float=False, operation='add', message='You just added', first=2, second=4)) # "You just added 6"
 	print(calculate(make_float=True, operation='divide', first=3.5, second=5)) # "The result is 0.7"
