@@ -11,7 +11,6 @@ with open("my_info.yml","r") as ymlfile:
 
 address=cfg["address"]
 
-
 url="https://maps.googleapis.com/maps/api/geocode/json"
 
 response= requests.get(
