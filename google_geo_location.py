@@ -1,22 +1,19 @@
 import requests
 import yaml
 
-with open("google_api_keys.yml","r") as ymlfile:
-	cfg= yaml.load(ymlfile)
+cfg_files=["google_api_keys.yml","my_info.yml"]
+cfg={}
 
-api_key=cfg["map_api_key"]
-
-with open("my_info.yml","r") as ymlfile:
-	cfg= yaml.load(ymlfile)
-
-address=cfg["address"]
+for cfg_file in cfg_files:
+	with open(cfg_file,"r") as ymlfile:
+		cfg[cfg_file]= yaml.load(ymlfile)
 
 url="https://maps.googleapis.com/maps/api/geocode/json"
 
 response= requests.get(
 	url,
 	headers={"Accept":"application/json"},
-	params={"address": address,"key":api_key}
+	params={"address":cfg["my_info.yml"]["address"], "key":cfg["google_api_keys.yml"]["map_api_key"]}
 	)
 
 data=response.json()
