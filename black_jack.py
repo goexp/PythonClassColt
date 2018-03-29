@@ -27,10 +27,7 @@ class Card:
 
 class Deck:
 	def __init__(self):
-		self.cards = []
-		for suit in Card.valid_suits:
-			for value in Card.valid_values:
-				self.cards.insert(0,Card(suit,value))
+		self.cards=[Card(suit,value) for suit in Card.valid_suits for value in Card.valid_values]
 	def count(self):
 		return len(self.cards)
 	def __repr__(self):
