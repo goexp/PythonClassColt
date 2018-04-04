@@ -2,28 +2,44 @@ from random import shuffle as rnd_shuffle
 from pyfiglet import figlet_format
 from termcolor import colored
 
+BLACKJACK = 21
+
 class Card:
 	valid_suits=("Hearts","Diamonds","Clubs","Spades")
 	valid_values=("A","2","3","4","5","6","7","8","9","10","J","Q","K")
+
 	def __init__(self,suit,value):
-		Card._setSuit(self,suit)
-		Card._setValue(self,value)
+		self.suit=suit
+		self.value=value
+
 	def __repr__(self):
 		return f"{self.value} of {self.suit}"
-	def _setSuit(self,suit):
-		if not (suit in Card.valid_suits):
-			raise ValueError("Must be one of "+", ".join(Card.valid_suits)+".")
-		self.suit=suit
-	def _setValue(self,value):
-		if not (value in Card.valid_values):
-			raise ValueError("Must be one of "+", ".join(Card.valid_values)+".")
-		self.value=value
-	def get_black_jack_value(self):
+	
+	def get_black_jack_value(self,ace=11):
 		if self.value in ["J","K","Q"]:
 			return 10
 		if self.value in ["A"]:
-			return 11
+			return ace
 		return int(self.value)
+	
+	@property
+	def suit(self):
+		return self._suit
+	@suit.setter
+	def suit(self,suit):
+		if not (suit in Card.valid_suits):
+			raise ValueError("Must be one of "+", ".join(Card.valid_suits)+".")
+		self._suit=suit
+
+	@property
+	def value(self):
+		return self._value
+	@value.setter
+	def value(self,value):
+		if not (value in Card.valid_values):
+			raise ValueError("Must be one of "+", ".join(Card.valid_values)+".")
+		self._value=value
+
 
 class Deck:
 	def __init__(self):
@@ -64,24 +80,31 @@ while  True:
 	computer_value=sum([item.get_black_jack_value() for item in computer])
 	user_value=sum([item.get_black_jack_value() for item in user])
 
-	print(f"The computer has {computer} which has a value of {computer_value}")
 	print(f"You have {user} which has a value of {user_value}")
+	print(f"The computer has {computer} which has a value of {computer_value}")
 
-	while computer_value < 13 and user_value < 13: 
+	while computer_value < BLACKJACK and user_value < BLACKJACK: 
 		if input("Would you like to  draw (y/n) ") == 'y':
 			user+=the_deck.deal_card()
 			user_value=sum([item.get_black_jack_value() for item in user])
+			user_value_ace_1=sum([item.get_black_jack_value(1) for item in user])
+			if user_value > BLACKJACK:
+				user_value=user_value_ace_1
 			print(f"You now have {user} your blackjack total is {user_value}")
-		else:
+		
+		if (computer_value < (BLACKJACK - 4) and user_value < (BLACKJACK+1)) or (computer_value < user_value and user_value <= BLACKJACK):
 			computer+=the_deck.deal_card()
 			computer_value=sum([item.get_black_jack_value() for item in computer])
-			print(f"He has {computer} his blackjack total is {computer_value}")
+			computer_value_ace_1=sum([item.get_black_jack_value(1) for item in computer])
+			if computer_value > BLACKJACK:
+				computer_value=computer_value_ace_1
+			print(f"The computer has {computer} his blackjack total is {computer_value}")
 
-	if computer_value > 13 or (user_value <= 13 and user_value > computer_value):
+	if computer_value > BLACKJACK or (user_value <= BLACKJACK and user_value > computer_value):
 		user_won=True
 		user_wins+=1
 		print("You won!")		
-	elif user_value > 13 or (computer_value <= 13 and computer_value > user_value):
+	elif user_value > BLACKJACK or (computer_value <= BLACKJACK and computer_value > user_value):
 		computer_won=True
 		computer_wins+=1
 		print("Computer won!")		
