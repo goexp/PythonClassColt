@@ -15,13 +15,6 @@ class Card:
 	def __repr__(self):
 		return f"{self.value} of {self.suit}"
 	
-	def get_black_jack_value(self,ace=11):
-		if self.value in ["J","K","Q"]:
-			return 10
-		if self.value in ["A"]:
-			return ace
-		return int(self.value)
-	
 	@property
 	def suit(self):
 		return self._suit
@@ -40,9 +33,17 @@ class Card:
 			raise ValueError("Must be one of "+", ".join(Card.valid_values)+".")
 		self._value=value
 
+class BlackJackCard(Card):	
+	def get_black_jack_value(self,ace=11):
+		if self.value in ["J","K","Q"]:
+			return 10
+		if self.value in ["A"]:
+			return ace
+		return int(self.value)
+
 
 class Deck:
-	def __init__(self):
+	def __init__(self,Card):
 		self.cards=[Card(suit,value) for suit in Card.valid_suits for value in Card.valid_values]
 	def count(self):
 		return len(self.cards)
@@ -73,7 +74,7 @@ print(colored(figlet_format("Black Jack 1999"),color="white"))
 while  True:
 	computer_won=False
 	user_won=False
-	the_deck=Deck()
+	the_deck=Deck(BlackJackCard)
 	the_deck.shuffle()
 	computer = the_deck.deal_card()
 	user=the_deck.deal_card()
