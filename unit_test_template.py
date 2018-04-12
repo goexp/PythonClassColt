@@ -1,6 +1,6 @@
 import unittest
 #from <module to test> import func1,class1,class2...
-
+ 
 class test_test(unittest.TestCase):
 	def setUp(self):
 		"""runs before every test"""
