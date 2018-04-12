@@ -8,8 +8,8 @@ class test_test(unittest.TestCase):
 		pass
 
     def test_sample(self):
-    	"""doc string"""
-        self.assertEqual(1, 1)
+		"""doc string"""
+		self.assertEqual(1, 1)
 		#assertTrue(a, Message)
 		#assertFalse(a, Message)
 		#assertEqual(a, b, Message)
