@@ -3,8 +3,10 @@ import unittest
 
 class test_test(unittest.TestCase):
 	def setUp(self):
+		"""runs before every test"""
 		pass
 	def tearDown(self):
+		"""runs after every test"""
 		pass
 
     def test_sample(self):
