@@ -21,18 +21,25 @@ class Deck_test(unittest.TestCase):
 		pass
 	def test_init(self):
 		"""Each instance should have a cards attribute with all 52 possible instances of Card"""
+		pass
 	def test_count(self):
 		"""Should return how many cards remain in a deck"""
+		pass
 	def test_repr(self):
 		"""Should return how many cards are left in a deck eg. 'Deck of 52 cards'"""
+		pass
 	def test_deal(self):
 		"""Accepts a number and removes that many cards from a deck. If there are no cards left it returns a valueError 'All cards have been dealt'"""
+		pass
 	def test_shuffle(self):
 		"""Should shuffle a full deck. If any are missing it should return a valueError 'Only full decks can be shuffled'"""
+		pass
 	def test_deal_card(self):
 		"""Should deal one card from the deck"""
+		pass
 	def test_deal_hand(self):
 		"""Accepts a number and deals that many cards from the deck in a list"""
+		pass
 
 if __name__ == '__main__':
 	unittest.main()
