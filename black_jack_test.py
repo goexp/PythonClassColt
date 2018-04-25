@@ -29,7 +29,7 @@ class Deck_test(unittest.TestCase):
 		for card in all_cards:
 			if not str(card) in cards_from_deck:
 				isEqual=False
-		self.assertTrue(isEqual)
+		self.assertTrue(isEqual,"Did not end up with all 52 possible instances of Card")
 
 	def test_count(self):
 		"""Should return how many cards remain in a deck"""
@@ -53,11 +53,29 @@ class Deck_test(unittest.TestCase):
 		except ValueError as exception:
 			if (str(exception)=="All cards have been dealt"):
 				raised_exception=True
-		self.assertTrue(raised_exception)		
+		self.assertTrue(raised_exception,"Did not return: All cards have been dealt")		
 
 	def test_shuffle(self):
 		"""Should shuffle a full deck. If any are missing it should return a valueError 'Only full decks can be shuffled'"""
-		pass
+		#Deal 2 decks, shuffle 1 and see if they are different
+		deck1=self.deck._deal(52)
+		self.deck=Deck(Card)
+		self.deck.shuffle()
+		deck2=self.deck._deal(52)
+		self.assertFalse(deck1==deck2)
+
+		#Deal 1 card from a deck and see if it lets you shuffle it
+		self.deck=Deck(Card)
+		raised_exception=False
+		try:
+			self.deck._deal(1)
+			self.deck.shuffle()
+		except ValueError as exception:
+			if (str(exception)=="Only full decks can be shuffled"):
+				raised_exception=True
+		self.assertTrue(raised_exception,"Did not return: Only full decks can be shuffled")		
+
+		
 	def test_deal_card(self):
 		"""Should deal one card from the deck"""
 		pass
