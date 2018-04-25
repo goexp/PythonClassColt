@@ -50,8 +50,9 @@ class Deck_test(unittest.TestCase):
 		raised_exception=False
 		try:
 			self.deck._deal(1)
-		except ValueError:
-			raised_exception=True
+		except ValueError as exception:
+			if (str(exception)=="All cards have been dealt"):
+				raised_exception=True
 		self.assertTrue(raised_exception)		
 
 	def test_shuffle(self):
