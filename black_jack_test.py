@@ -78,10 +78,18 @@ class Deck_test(unittest.TestCase):
 		
 	def test_deal_card(self):
 		"""Should deal one card from the deck"""
-		pass
+		oneCard=Card("Hearts","3")
+		card=self.deck.deal_card()
+		self.assertEqual(len(card),1)
+		self.assertEqual(type(card[0]),type(oneCard))
+	
 	def test_deal_hand(self):
 		"""Accepts a number and deals that many cards from the deck in a list"""
-		pass
+		oneCard=Card("Hearts","3")
+		cards=self.deck.deal_hand(5)
+		self.assertEqual(len(cards),5)
+		for card in cards:
+			self.assertEqual(type(card),type(oneCard))
 
 if __name__ == '__main__':
 	unittest.main()
