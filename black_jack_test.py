@@ -63,7 +63,7 @@ class Deck_test(unittest.TestCase):
 		self.deck.shuffle()
 		deck2=self.deck._deal(52)
 		self.assertFalse(deck1==deck2)
-
+		
 		#Deal 1 card from a deck and see if it lets you shuffle it
 		self.deck=Deck(Card)
 		raised_exception=False
@@ -82,6 +82,7 @@ class Deck_test(unittest.TestCase):
 		card=self.deck.deal_card()
 		self.assertEqual(len(card),1)
 		self.assertEqual(type(card[0]),type(oneCard))
+		self.assertEqual(self.deck.count(),51)
 	
 	def test_deal_hand(self):
 		"""Accepts a number and deals that many cards from the deck in a list"""
@@ -90,6 +91,7 @@ class Deck_test(unittest.TestCase):
 		self.assertEqual(len(cards),5)
 		for card in cards:
 			self.assertEqual(type(card),type(oneCard))
+		self.assertEqual(self.deck.count(),(52-5))
 
 if __name__ == '__main__':
 	unittest.main()
